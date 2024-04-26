@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const SignIn = () => {
   return (
-    <section className="p-3 mt-28 max-w-96 mx-auto">
+    <section className="p-3 mt-28 max-w-[35rem] mx-auto">
       <form className="flex flex-col gap-4   bg-green-1 p-7 rounded-md">
         <input
           className="p-2 text-black font-bold"
@@ -18,7 +18,7 @@ const SignIn = () => {
       </form>
       <p className="ml-3 text-xs text-white sm:text-sm md:text-lg">
         Don&apos;t have an account{" "}
-        <Link className=" hover:underline" to="/sign-up">
+        <Link className="text-green-500 hover:underline" to="/sign-up">
           Sign Up
         </Link>
       </p>
