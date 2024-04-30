@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 
+const backHost = import.meta.env.VITE_HOST;
 const SignUp = () => {
+  const navigator = useNavigate();
   const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     userName: "",
     email: "",
@@ -16,8 +20,13 @@ const SignUp = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     if (formData.userName.length < 2) {
       setIsError("Username should be more that 2 characters");
+      return;
+    }
+    if (formData.email.length === 0) {
+      setIsError("Email Field cannot be empty");
       return;
     }
 
@@ -25,16 +34,27 @@ const SignUp = () => {
       setIsError("Password should atleast be 8 characters");
       return;
     }
+    try {
+      const res = await fetch(`${backHost}/sign-up`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    const res = await fetch("http://127.0.0.1:5000/sign-up", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+      const data = await res.json();
+      if (!data.ok) {
+        setIsLoading(false);
+        throw new Error(data.message);
+      }
+      setIsLoading(false);
+      navigator("/sign-in");
+    } catch (error) {
+      setIsLoading(false);
+      setIsError(error.message);
+    }
   };
-
   return (
     <section className="p-3 mt-28 max-w-[35rem] mx-auto">
       <form
@@ -62,7 +82,12 @@ const SignUp = () => {
           name="password"
           onChange={formChangeHandler}
         />
-        <button className="bg-black py-2 hover:opacity-85">Sign In</button>
+        <button
+          disabled={isLoading}
+          className="bg-black py-2 text-center hover:opacity-85"
+        >
+          {isLoading ? <Loading /> : "Sign Up"}
+        </button>
         {isError && (
           <p className="ml-2 -mt-2 font-extrabold text-red-700 text-xs sm:text-sm md:text-lg">
             {isError}

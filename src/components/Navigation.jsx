@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Navigation = ({ openSideBar }) => {
+  const { currentUser } = useSelector((state) => state.user);
+  console.log(currentUser);
   return (
     <nav className="bg-green-400 flex justify-between p-4 font-extrabold text-black relative z-50">
       <Link to="/">
