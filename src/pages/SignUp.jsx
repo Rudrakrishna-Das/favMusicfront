@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
+import Oauth from "../components/Oauth";
 
 const backHost = import.meta.env.VITE_HOST;
 const SignUp = () => {
@@ -88,6 +89,7 @@ const SignUp = () => {
         >
           {isLoading ? <Loading /> : "Sign Up"}
         </button>
+        <Oauth />
         {isError && (
           <p className="ml-2 -mt-2 font-extrabold text-red-700 text-xs sm:text-sm md:text-lg">
             {isError}

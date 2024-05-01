@@ -5,14 +5,20 @@ const Navigation = ({ openSideBar }) => {
   const { currentUser } = useSelector((state) => state.user);
   console.log(currentUser);
   return (
-    <nav className="bg-green-400 flex justify-between p-4 font-extrabold text-black relative z-50">
+    <nav className="bg-green-400 flex justify-between items-center p-4 font-extrabold text-black relative z-50">
       <Link to="/">
         <h1 className="cursor-pointer z-50">FavMp3</h1>
       </Link>
-      <ul className="md:flex gap-4 hidden ">
+      <ul className="md:flex items-center gap-4 hidden ">
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
-        <Link to="/sign-in">SignIn</Link>
+        <Link to="/profile">
+          {currentUser ? (
+            <img className="rounded-full w-8 h-8" src={currentUser.avatar} />
+          ) : (
+            <p>Sign In</p>
+          )}
+        </Link>
       </ul>
       <img
         onClick={openSideBar}

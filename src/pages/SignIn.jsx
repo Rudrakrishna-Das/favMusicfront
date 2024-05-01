@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../redux/user/userSlice";
+import Oauth from "../components/Oauth";
 
 const backHost = import.meta.env.VITE_HOST;
 
@@ -78,6 +79,7 @@ const SignIn = () => {
         <button disabled={isLoading} className="bg-black py-2 hover:opacity-85">
           {isLoading ? <Loading /> : "Sign In"}
         </button>
+        <Oauth />
         {isError && (
           <p className="ml-2 -mt-2 font-extrabold text-red-700 text-xs sm:text-sm md:text-lg">
             {isError}
