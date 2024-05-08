@@ -104,7 +104,7 @@ const Profile = () => {
   };
 
   return (
-    <section className=" max-w-[32rem] mx-auto my-20">
+    <section className=" max-w-[32rem] mx-auto my-5">
       <form onSubmit={submitHandler} className="flex flex-col text-black gap-6">
         <input
           onChange={(e) => setFile(e.target.files[0])}
@@ -176,15 +176,14 @@ const Profile = () => {
         >
           Select your music
         </button>
-      </form>
-      <div className="flex justify-between text-white">
-        <p className="text-red-500 hover:underline cursor-pointer">
-          Delete account
-        </p>
-        <p onClick={signoutHandler} className="hover:underline cursor-pointer">
+        <button
+          type="button"
+          onClick={signoutHandler}
+          className="bg-red-600 py-2 text-lg font-bold hover:opacity-90 md:text-xl"
+        >
           Sign out
-        </p>
-      </div>
+        </button>
+      </form>
     </section>
   );
 };
