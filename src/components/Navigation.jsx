@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 
 const Navigation = ({ openSideBar }) => {
   const { currentUser } = useSelector((state) => state.user);
-  console.log(currentUser);
   return (
-    <nav className="bg-green-400 flex justify-between items-center p-4 font-extrabold text-black relative z-50">
+    <nav className="bg-green-400 flex justify-between w-full items-center p-4 font-extrabold text-black relative z-50">
       <Link to="/">
         <h1 className="cursor-pointer z-50">FavMp3</h1>
       </Link>

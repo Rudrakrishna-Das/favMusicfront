@@ -104,20 +104,24 @@ const Profile = () => {
   };
 
   return (
-    <section className=" max-w-[32rem] mx-auto my-5">
-      <form onSubmit={submitHandler} className="flex flex-col text-black gap-6">
+    <section className=" md:flex md:items-center md:justify-around gap-6 md:flex-row my-16 md:my-20">
+      <form
+        onSubmit={submitHandler}
+        className="flex flex-col flex-grow gap-3 max-md:max-w-[100%] max-w-[70%] mx-auto"
+      >
         <input
           onChange={(e) => setFile(e.target.files[0])}
           ref={fileRef}
           hidden
           type="file"
           accept="images/*"
+          disabled={isLoading}
         />
-        <div></div>
+
         <img
           onClick={() => fileRef.current.click()}
-          className="mx-auto rounded-full w-14 h-14 cursor-pointer"
-          src={currentUser.avatar}
+          className="w-20 h-2w-20 object-contain self-center rounded-full cursor-pointer"
+          src={formData.avatar ? formData.avatar : currentUser.avatar}
           alt={currentUser.userName}
         />
         {filePercentage > 0 && (
@@ -127,36 +131,37 @@ const Profile = () => {
               : `Upload done ${filePercentage} %`}
           </p>
         )}
-        {fileUploadError && (
-          <p className="text-red-600 text-center">{fileUploadError}</p>
-        )}
+        {fileUploadError && <p className="">{fileUploadError}</p>}
         <input
-          className="py-2 px-1 font-bold text-xl"
+          className="w-[70%] mx-auto py-2 px-1 text-black text-base sm:text-lg md:text-xl font-semibold rounded-lg"
           type="text"
           placeholder="Username"
           name="userName"
           onChange={formChangeHandler}
           value={formData.userName ? formData.userName : currentUser.userName}
+          disabled={isLoading}
         />
         <input
-          className="py-2 px-1 font-bold text-xl"
+          className="w-[70%] mx-auto py-2 px-1 text-black text-base sm:text-lg md:text-xl font-semibold rounded-lg"
           type="email"
           placeholder="Email"
           name="email"
           onChange={formChangeHandler}
           value={formData.email ? formData.email : currentUser.email}
+          disabled={isLoading}
         />
         <input
-          className="py-2 px-1 font-bold text-xl"
+          className="w-[70%] mx-auto py-2 px-1 text-black text-base sm:text-lg md:text-xl font-semibold rounded-lg"
           type="text"
           placeholder="Password"
           name="password"
           onChange={formChangeHandler}
           value={formData.password ? formData.password : ""}
+          disabled={isLoading}
         />
         <button
           disabled={isLoading}
-          className="bg-blue-700 py-2 text-lg font-bold hover:opacity-90 md:text-xl"
+          className="bg-blue-700 w-[70%] mx-auto py-2 text-sm md:text-lg font-bold rounded-full hover:opacity-85"
         >
           {isLoading ? <Loading /> : "Update User"}
         </button>
@@ -164,26 +169,35 @@ const Profile = () => {
           <p
             className={`text-sm ${
               hasError ? "text-red-600" : "text-green-600"
-            } font-bold`}
+            } font-bold mx-auto`}
           >
             {message}
           </p>
         )}
         <button
-          onClick={() => navigate("/upload-music")}
-          type="button"
-          className="bg-green-400 py-2 text-lg font-bold hover:opacity-90 md:text-xl"
-        >
-          Select your music
-        </button>
-        <button
           type="button"
           onClick={signoutHandler}
-          className="bg-red-600 py-2 text-lg font-bold hover:opacity-90 md:text-xl"
+          className="bg-red-700 w-[70%] mx-auto py-2 text-sm md:text-lg font-bold rounded-full hover:opacity-85"
         >
           Sign out
         </button>
       </form>
+      <div className="flex flex-col flex-grow gap-3 mx-auto max-md:max-w-[100%] max-w-[70%] max-md:mt-5">
+        <button
+          onClick={() => navigate("/upload-music")}
+          type="button"
+          className="bg-green-400 w-[70%] mx-auto text-sm md:text-lg py-2 font-bold text-black rounded-full hover:opacity-85"
+        >
+          Select your music
+        </button>
+        <button
+          onClick={() => navigate("/personal-music")}
+          type="button"
+          className="bg-green-400 w-[70%] mx-auto text-sm md:text-lg py-2 font-bold text-black rounded-full hover:opacity-85"
+        >
+          Your Music
+        </button>
+      </div>
     </section>
   );
 };

@@ -9,6 +9,7 @@ import { useState } from "react";
 import PrivateRoute from "./components/PrivateRoute";
 import Profile from "./pages/Profile";
 import UploadMusic from "./pages/UploadMusic";
+import PersonalMusic from "./pages/PersonalMusic";
 
 const App = () => {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
@@ -29,6 +30,7 @@ const App = () => {
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/upload-music" element={<UploadMusic />} />
+          <Route path="/personal-music" element={<PersonalMusic/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

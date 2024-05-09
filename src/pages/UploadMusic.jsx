@@ -7,6 +7,7 @@ import {
 import { useEffect, useState } from "react";
 import app from "../firebase";
 import Loading from "../components/Loading";
+import { useNavigate } from "react-router-dom";
 
 const backHost = import.meta.env.VITE_HOST;
 
@@ -17,6 +18,7 @@ const UploadMusic = () => {
   const [message, setMessage] = useState("");
   const [laoding, setLoading] = useState(false);
   const [filePercentage, setFilePercentage] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fileUploadHandler = (file) => {
@@ -81,6 +83,11 @@ const UploadMusic = () => {
       credentials: "include",
     });
     const data = await res.json();
+    if (!data.ok) {
+      setError(true);
+      setMessage(data.message);
+    }
+    navigate("/personal-music");
   };
 
   return (
@@ -131,7 +138,13 @@ const UploadMusic = () => {
           {laoding ? <Loading /> : "Submit"}
         </button>
         {message.length > 0 && (
-          <p className="text-red-600 font-bold text-sm sm:text-lg">{message}</p>
+          <p
+            className={`${
+              error ? "text-red-600" : "text-green-600"
+            } font-bold text-sm sm:text-lg`}
+          >
+            {message}
+          </p>
         )}
       </form>
     </section>
