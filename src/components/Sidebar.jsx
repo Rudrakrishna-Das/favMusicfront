@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Sidebar = ({ openSideBar }) => {
   const { currentUser } = useSelector((state) => state.user);
   return (
-    <section
+    <aside
       className={`${
         openSideBar ? "flex" : "hidden"
       } h-screen bg-green-400 max-w-44 justify-center pt-20 fixed top-0 left-0 z-10 transition-all`}
@@ -22,7 +22,7 @@ const Sidebar = ({ openSideBar }) => {
           <Link to="/about">About</Link>
         </div>
       </nav>
-    </section>
+    </aside>
   );
 };
 

@@ -9,21 +9,25 @@ const Music = ({ address, protect }) => {
 
   useEffect(() => {
     const fetchMusicHandler = async () => {
-      setLoading(true);
-      const res = await fetch(`${backHost}/${address}`, {
-        credentials: "include",
-      });
-      const data = await res.json();
-      if (!data.ok) {
-        setError(data.message);
+      try {
+        setError(false);
+        setLoading(true);
+        const res = await fetch(`${backHost}/${address}`, {
+          credentials: "include",
+        });
+        const data = await res.json();
+        if (!data.ok) {
+          throw new Error(data.message);
+        }
+        setMusics(data.data);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
         setLoading(false);
       }
-      setMusics(data.data);
-      setLoading(false);
     };
     fetchMusicHandler();
   }, [address]);
-
   const deleteMusicHandler = async (name) => {
     const res = await fetch(`${backHost}/delete-music`, {
       method: "POST",
@@ -41,7 +45,7 @@ const Music = ({ address, protect }) => {
   return (
     <ul className="my-2">
       {loading && <Loading />}
-      {error && <p>{error}</p>}
+      {error && <p className="text-xl text-center text-red-500">{error}</p>}
       {!loading && !error && musics.length === 0 && (
         <p className="text-4xl">You Have no Music</p>
       )}

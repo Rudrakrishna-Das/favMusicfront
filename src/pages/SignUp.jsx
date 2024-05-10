@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import Oauth from "../components/Oauth";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const backHost = import.meta.env.VITE_HOST;
 const SignUp = () => {
@@ -13,6 +14,7 @@ const SignUp = () => {
     email: "",
     password: "",
   });
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const formChangeHandler = (e) => {
     setIsError(false);
@@ -56,6 +58,13 @@ const SignUp = () => {
       setIsError(error.message);
     }
   };
+
+  const showPassword = () => {
+    setPasswordVisible(true);
+  };
+  const hidePassword = () => {
+    setPasswordVisible(false);
+  };
   return (
     <section className="p-3 mt-28 max-w-[35rem] mx-auto">
       <form
@@ -78,11 +87,30 @@ const SignUp = () => {
         />
         <input
           className="p-2 text-black font-bold"
-          type="text"
+          type={passwordVisible ? "text" : "password"}
           placeholder="Password"
           name="password"
           onChange={formChangeHandler}
         />
+        <button
+          type="button"
+          onClick={showPassword}
+          className={`self-end relative -top-11 right-2 ${
+            passwordVisible ? "hidden" : ""
+          }`}
+        >
+          <FaEye className="text-black text-xl cursor-pointer hover:opacity-85" />
+        </button>
+        <button
+          type="button"
+          onClick={hidePassword}
+          className={`self-end relative -top-11 right-2 ${
+            passwordVisible ? "" : "hidden"
+          }`}
+        >
+          <FaEyeSlash className="text-black text-xl cursor-pointer hover:opacity-85" />
+        </button>
+
         <button
           disabled={isLoading}
           className="bg-black py-2 text-center hover:opacity-85"

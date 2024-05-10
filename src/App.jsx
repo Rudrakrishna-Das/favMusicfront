@@ -22,6 +22,7 @@ const App = () => {
         <Navigation openSideBar={openSideBarOpenHandler} />
         <Sidebar openSideBar={isSideBarOpen} />
       </header>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -30,9 +31,14 @@ const App = () => {
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/upload-music" element={<UploadMusic />} />
-          <Route path="/personal-music" element={<PersonalMusic/>}/>
+          <Route path="/personal-music" element={<PersonalMusic />} />
         </Route>
       </Routes>
+      <footer className="bg-green-400 fixed bottom-0 w-full">
+        <h1 className="text-black text-center font-bold">
+          &#169; Design and fuctions created by Rudra Krishna Das
+        </h1>
+      </footer>
     </BrowserRouter>
   );
 };
