@@ -4,7 +4,7 @@ const About = () => {
       <h1 className="text-center text-2xl underline">
         A Website To Remember your Favourite Musics
       </h1>
-      <div className="flex flex-col gap-5 mt-2">
+      <div className="flex flex-col gap-5 mt-2 text-justify">
         <p>
           Introducing FavMusic, your ultimate destination to cherish and
           remember your favorite tunes! At FavMusic, we understand the profound
@@ -33,30 +33,6 @@ const About = () => {
           community where the love for music knows no bounds.
         </p>
 
-        <p>
-          Above all, FavMusic is about creating memories that last a lifetime.
-          Relive the joy of hearing your favorite song for the first time, or
-          reminisce about the soundtrack of a special moment in your life. With
-          FavMusic, your favorite tunes aren't just sounds; they're cherished
-          memories waiting to be rediscovered. Join us on FavMusic, where every
-          melody has a story, and every beat has a heartbeat.
-        </p>
-        <p>
-          Above all, FavMusic is about creating memories that last a lifetime.
-          Relive the joy of hearing your favorite song for the first time, or
-          reminisce about the soundtrack of a special moment in your life. With
-          FavMusic, your favorite tunes aren't just sounds; they're cherished
-          memories waiting to be rediscovered. Join us on FavMusic, where every
-          melody has a story, and every beat has a heartbeat.
-        </p>
-        <p>
-          Above all, FavMusic is about creating memories that last a lifetime.
-          Relive the joy of hearing your favorite song for the first time, or
-          reminisce about the soundtrack of a special moment in your life. With
-          FavMusic, your favorite tunes aren't just sounds; they're cherished
-          memories waiting to be rediscovered. Join us on FavMusic, where every
-          melody has a story, and every beat has a heartbeat.
-        </p>
         <p>
           Above all, FavMusic is about creating memories that last a lifetime.
           Relive the joy of hearing your favorite song for the first time, or
