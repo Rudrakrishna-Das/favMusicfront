@@ -16,7 +16,7 @@ const UploadMusic = () => {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
-  const [laoding, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [filePercentage, setFilePercentage] = useState(0);
   const navigate = useNavigate();
 
@@ -60,6 +60,7 @@ const UploadMusic = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setLoading(true);
     if (
       !formData.title ||
       !formData.artist ||
@@ -87,6 +88,7 @@ const UploadMusic = () => {
       setError(true);
       setMessage(data.message);
     }
+    setLoading(false);
     navigate("/personal-music");
   };
 
@@ -116,6 +118,7 @@ const UploadMusic = () => {
           placeholder="Title"
           name="title"
           onChange={formChangeHandler}
+          disabled={loading}
         />
         <input
           className="py-1 px-2 text-base font-semibold sm:text-xl bg-transparent border-2 border-black focus-visible:outline-none"
@@ -123,6 +126,7 @@ const UploadMusic = () => {
           placeholder="Artist"
           name="artist"
           onChange={formChangeHandler}
+          disabled={loading}
         />
         <input
           className="py-1 px-2 text-base font-semibold sm:text-xl bg-transparent border-2 border-black focus-visible:outline-none"
@@ -130,12 +134,13 @@ const UploadMusic = () => {
           placeholder="Album"
           name="album"
           onChange={formChangeHandler}
+          disabled={loading}
         />
         <button
-          disabled={laoding}
+          disabled={loading}
           className="bg-black py-2 text-lg rounded-md hover:opacity-95 disabled:cursor-not-allowed disabled:bg-slate-600"
         >
-          {laoding ? <Loading /> : "Submit"}
+          {loading ? <Loading /> : "Submit"}
         </button>
         {message.length > 0 && (
           <p
