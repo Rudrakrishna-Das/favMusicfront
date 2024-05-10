@@ -3,13 +3,17 @@ import app from "../firebase";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateUser } from "../redux/user/userSlice";
+import { useState } from "react";
+import Loading from "./Loading";
 
 const backHost = import.meta.env.VITE_HOST;
 
 const Oauth = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const googleAuthHandler = async () => {
+    setLoading(true);
     const provider = new GoogleAuthProvider();
     const auth = getAuth(app);
 
@@ -28,15 +32,17 @@ const Oauth = () => {
     });
     const data = await res.json();
     dispatch(updateUser(data.data));
+    setLoading(false);
     navigate("/");
   };
   return (
     <button
       onClick={googleAuthHandler}
+      disabled={loading}
       className="bg-red-800 shadow-md py-2 rounded-sm hover:opacity-90"
       type="button"
     >
-      Signin with Google
+      {loading ? <Loading /> : "Signin with Google"}
     </button>
   );
 };
