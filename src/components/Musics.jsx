@@ -5,6 +5,7 @@ const backHost = import.meta.env.VITE_HOST;
 const Music = ({ address, protect }) => {
   const [musics, setMusics] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState({});
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -29,6 +30,8 @@ const Music = ({ address, protect }) => {
     fetchMusicHandler();
   }, [address]);
   const deleteMusicHandler = async (name) => {
+    setDeleteLoading({ [name]: true });
+
     const res = await fetch(`${backHost}/delete-music`, {
       method: "POST",
       headers: {
@@ -39,11 +42,13 @@ const Music = ({ address, protect }) => {
     });
     const data = await res.json();
     if (data.ok) {
+      setDeleteLoading({ [name]: false });
       setMusics(data.data);
     }
   };
+
   return (
-    <ul className="my-2">
+    <ul className="my-8">
       {loading && <Loading />}
       {error && <p className="text-xl text-center text-red-500">{error}</p>}
       {!loading && !error && musics.length === 0 && (
@@ -61,10 +66,11 @@ const Music = ({ address, protect }) => {
               </div>
               {protect && (
                 <button
+                  disabled={deleteLoading[music.title]}
                   onClick={() => deleteMusicHandler(music.title)}
-                  className="bg-red-600 self-end mr-5 px-9 py-1 rounded-lg text-black font-bold text-xl max-sm:text-base cursor-pointer hover:opacity-80"
+                  className="bg-red-600 self-end mr-5 px-9 py-1 rounded-lg text-black font-bold text-xl max-sm:text-base cursor-pointer hover:opacity-80 disabled:bg-slate-600"
                 >
-                  Delete
+                  {deleteLoading[music.title] ? <Loading /> : "Delete"}
                 </button>
               )}
             </li>

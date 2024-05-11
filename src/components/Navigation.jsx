@@ -11,13 +11,15 @@ const Navigation = ({ openSideBar }) => {
       <ul className="md:flex items-center gap-4 hidden ">
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
-        <Link to="/profile">
-          {currentUser ? (
-            <img className="rounded-full w-8 h-8" src={currentUser.avatar} />
-          ) : (
-            <p>Sign In</p>
-          )}
-        </Link>
+        {
+          <Link to="/profile">
+            {currentUser ? (
+              <img className="rounded-full w-8 h-8" src={currentUser.avatar} />
+            ) : (
+              <p>Sign In</p>
+            )}
+          </Link>
+        }
       </ul>
       <img
         onClick={openSideBar}
