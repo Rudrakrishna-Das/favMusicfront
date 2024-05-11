@@ -36,7 +36,7 @@ const App = () => {
       </Routes>
       <footer className="bg-green-400 fixed bottom-0 w-full">
         <h1 className="text-black text-center font-bold">
-          &#169; Design and fuctions created by Rudra Krishna Das
+          &#169; Designed and Developed by Rudra Krishna Das
         </h1>
       </footer>
     </BrowserRouter>
