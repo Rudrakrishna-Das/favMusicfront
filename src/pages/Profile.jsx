@@ -188,7 +188,7 @@ const Profile = () => {
           type="button"
           className="bg-green-400 w-[70%] mx-auto text-sm md:text-lg py-2 font-bold text-black rounded-full hover:opacity-85"
         >
-          Select your music
+          Upload your music
         </button>
         <button
           onClick={() => navigate("/personal-music")}

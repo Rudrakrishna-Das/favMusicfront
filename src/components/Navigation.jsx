@@ -23,8 +23,8 @@ const Navigation = ({ openSideBar }) => {
       </ul>
       <img
         onClick={openSideBar}
-        className="invert block md:hidden"
-        src="../../icons/hamburger.svg"
+        className="w-8 h-8 block md:hidden"
+        src="../../icons/hamburger.png"
       />
     </nav>
   );
