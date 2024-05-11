@@ -48,7 +48,7 @@ const Music = ({ address, protect }) => {
   };
 
   return (
-    <ul className="my-8">
+    <ul className="my-8 mx-2">
       {loading && <Loading />}
       {error && <p className="text-xl text-center text-red-500">{error}</p>}
       {!loading && !error && musics.length === 0 && (
@@ -75,7 +75,7 @@ const Music = ({ address, protect }) => {
               )}
             </li>
             {!protect && (
-              <p className="self-end">
+              <p className="self-end mx-6">
                 Uploaded by{" "}
                 {music.users.length === 1
                   ? music.users[0]
