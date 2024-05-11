@@ -66,11 +66,13 @@ const Profile = () => {
     if (keys.length === 0) {
       setHasError(true);
       setMessage("Nothing to Update");
+      setIsLoading(false);
       return;
     }
     if (formData.password?.length < 8) {
       setHasError(true);
       setMessage("password must be 8 characters long");
+      setIsLoading(false);
       return;
     }
     const res = await fetch(`${backHost}/update-user`, {

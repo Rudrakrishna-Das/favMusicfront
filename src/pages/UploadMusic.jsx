@@ -73,6 +73,7 @@ const UploadMusic = () => {
     ) {
       setError(true);
       setMessage("Please fill all field and upload a music");
+      setLoading(false);
       return;
     }
     const res = await fetch(`${backHost}/upload-music`, {
