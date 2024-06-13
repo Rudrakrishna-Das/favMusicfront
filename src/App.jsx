@@ -36,7 +36,14 @@ const App = () => {
       </Routes>
       <footer className="bg-green-400 fixed bottom-0 w-full">
         <h1 className="text-black text-center font-bold">
-          &#169; Designed and Developed by Rudra Krishna Das
+          &#169; Designed and Developed by{" "}
+          <a
+            className="hover:underline"
+            href="https://rudra-portfolio.vercel.app/"
+            target="_blank"
+          >
+            Rudra Krishna Das
+          </a>
         </h1>
       </footer>
     </BrowserRouter>
