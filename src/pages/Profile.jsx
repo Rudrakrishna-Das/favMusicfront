@@ -26,6 +26,7 @@ const Profile = () => {
   const fileRef = useRef(null);
   const dispatch = useDispatch();
 
+  // console.log("click", app);
   useEffect(() => {
     const fileHandleUpload = (file) => {
       const storage = getStorage(app);
@@ -140,7 +141,7 @@ const Profile = () => {
           placeholder="Username"
           name="userName"
           onChange={formChangeHandler}
-          value={formData.userName ? formData.userName : currentUser.userName}
+          defaultValue={currentUser.userName}
           disabled={isLoading}
         />
         <input
@@ -149,7 +150,7 @@ const Profile = () => {
           placeholder="Email"
           name="email"
           onChange={formChangeHandler}
-          value={formData.email ? formData.email : currentUser.email}
+          defaultValue={currentUser.email}
           disabled={isLoading}
         />
         <input
@@ -158,7 +159,7 @@ const Profile = () => {
           placeholder="Password"
           name="password"
           onChange={formChangeHandler}
-          value={formData.password ? formData.password : ""}
+          defaultValue={formData.password ? formData.password : ""}
           disabled={isLoading}
         />
         <button

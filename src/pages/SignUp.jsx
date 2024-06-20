@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import Oauth from "../components/Oauth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { sidebarCloseHandler } from "../redux/user/userSlice";
 
 const backHost = import.meta.env.VITE_HOST;
 const SignUp = () => {
@@ -20,6 +22,10 @@ const SignUp = () => {
     setIsError(false);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(sidebarCloseHandler());
+  }, []);
 
   const submitHandler = async (e) => {
     e.preventDefault();

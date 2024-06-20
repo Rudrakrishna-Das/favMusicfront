@@ -1,4 +1,12 @@
+import { useDispatch } from "react-redux";
+import { sidebarCloseHandler } from "../redux/user/userSlice";
+import { useEffect } from "react";
+
 const About = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(sidebarCloseHandler());
+  }, []);
   return (
     <section className="w-[60%] mx-auto my-7">
       <h1 className="text-center text-2xl underline">

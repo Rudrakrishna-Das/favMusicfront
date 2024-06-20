@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import { useDispatch } from "react-redux";
-import { updateUser } from "../redux/user/userSlice";
+import { sidebarCloseHandler, updateUser } from "../redux/user/userSlice";
 import Oauth from "../components/Oauth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -23,6 +23,10 @@ const SignIn = () => {
     setIsError(false);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    dispatch(sidebarCloseHandler());
+  }, []);
 
   const submitHandler = async (e) => {
     e.preventDefault();

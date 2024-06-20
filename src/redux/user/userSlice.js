@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   currentUser: null,
+  sidebarOpen: false,
 };
 
 const userSlice = createSlice({
@@ -11,9 +12,16 @@ const userSlice = createSlice({
     updateUser: (state, action) => {
       state.currentUser = action.payload;
     },
+    sidebarOpenHandler: (state) => {
+      state.sidebarOpen = true;
+    },
+    sidebarCloseHandler: (state) => {
+      state.sidebarOpen = false;
+    },
   },
 });
 
-export const { updateUser } = userSlice.actions;
+export const { updateUser, sidebarCloseHandler, sidebarOpenHandler } =
+  userSlice.actions;
 
 export default userSlice.reducer;
